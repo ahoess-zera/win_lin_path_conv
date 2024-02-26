@@ -1,0 +1,9 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Encoding=UTF-8
+Name=Convert Windows to Linux paths
+Exec=python <PATH_TO>/win_lin_path_conv.py <PARAMS>
+Icon=utilities-terminal
+Type=Application
+Terminal=true
+
