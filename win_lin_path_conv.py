@@ -1,5 +1,6 @@
 #!/bin/env python
 
+import time
 import subprocess
 import tkinter
 import argparse
@@ -48,6 +49,8 @@ class WinLinPathConverter:
         subprocess.run(["xdg-open", WinLinPathConverter._convert_win_to_lin_path(windows_path)])
         if args.pause:
             input("Press Enter to leave the program:")
+        else:
+            time.sleep(1)
 
 
 def main() -> None:
