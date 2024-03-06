@@ -13,6 +13,10 @@ class WinLinPathConverter:
         lin_path = win_path.replace("\\", "/")
         if lin_path.startswith("//"):
             lin_path = "smb:" + lin_path
+        elif lin_path.upper().startswith("K:/"):
+            lin_path = "smb://s-zera-stor01/data" + lin_path[2:]
+        elif lin_path.upper().startswith("M:/"):
+            lin_path = "smb://s-zera-stor01/data1" + lin_path[2:]
         return lin_path
 
     @staticmethod
@@ -45,8 +49,10 @@ class WinLinPathConverter:
             windows_path = WinLinPathConverter._get_clipboard_string()
         else:
             windows_path = input("Please enter a Windows-UNC-path: ")
+        linux_path = WinLinPathConverter._convert_win_to_lin_path(windows_path).strip()
         print(f"Trying to open entered path \"{windows_path}\"...")
-        subprocess.run(["xdg-open", WinLinPathConverter._convert_win_to_lin_path(windows_path)])
+        print(f"-> Resulting Linux path: \"{linux_path}\"")
+        subprocess.run(["xdg-open", linux_path])
         if args.pause:
             input("Press Enter to leave the program:")
         else:
